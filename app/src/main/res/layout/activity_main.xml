@@ -7,16 +7,32 @@
     android:background="@drawable/handcalc"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView_History"
+    <!--TextView_History-->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:text="6114646449+3242=6416556"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+
         app:layout_constraintBottom_toTopOf="@+id/textView_Operation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView_History"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:text="6114646449+3242=6416556" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!--TextView_Operation-->
     <TextView
         android:id="@+id/textView_Operation"
         android:layout_width="match_parent"
@@ -27,6 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!--TextView_Result-->
     <TextView
         android:id="@+id/textView_Result"
         android:layout_width="match_parent"
