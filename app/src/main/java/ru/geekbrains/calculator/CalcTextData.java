@@ -1,10 +1,32 @@
 package ru.geekbrains.calculator;
 
-public class CalcTextData {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class CalcTextData implements Parcelable {
     private String tvHistory;
     private String tvInput;
     private String tvResult;
     private String arguments;
+
+    protected CalcTextData(Parcel in) {
+        tvHistory = in.readString();
+        tvInput = in.readString();
+        tvResult = in.readString();
+        arguments = in.readString();
+    }
+
+    public static final Creator<CalcTextData> CREATOR = new Creator<CalcTextData>() {
+        @Override
+        public CalcTextData createFromParcel(Parcel in) {
+            return new CalcTextData(in);
+        }
+
+        @Override
+        public CalcTextData[] newArray(int size) {
+            return new CalcTextData[size];
+        }
+    };
 
     public String getArguments() {
         return arguments;
@@ -50,5 +72,18 @@ public class CalcTextData {
         this.tvInput = tvInput;
         this.tvResult = tvResult;
         this.arguments = arguments;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(tvHistory);
+        dest.writeString(tvInput);
+        dest.writeString(tvResult);
+        dest.writeString(arguments);
     }
 }
