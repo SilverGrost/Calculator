@@ -121,7 +121,10 @@ public class Calculate {
         String operations2 = "%/*-+";
 
         if (digits.contains(btn)) {
-            arguments = arguments + btn;
+            if (btn.equals("兀"))
+                arguments = arguments + Math.PI;
+            else
+                arguments = arguments + btn;
             arguments = setFormat(arguments);
 
         }
