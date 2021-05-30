@@ -1,5 +1,6 @@
 package ru.geekbrains.calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -18,6 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String arguments = "";
 
     private boolean canDot = true;
+
+    private final String dateForSave = "dateForSave";
+
+    private CalcTextData calcTextData;
 
 
     private void initView() {
@@ -94,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView_Input.setText("");
         textView_Result.setText("");
         arguments = "";
-         canDot = true;
+        canDot = true;
     }
 
     @Override
@@ -106,11 +111,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String operations = "^%/*-+C⇐";
+        String operations = "%^/*-+C⇐";
         String dotCan = "%/*-+";
         String enterFalse = "^%C⇐";
+        String digits = "0123456789";
 
         String inText = (String) ((Button) findViewById(v.getId())).getText();
+
+        if (digits.contains(inText)){
+            if (isEnterPress){
+                clear();
+                isEnterPress = false;
+            }
+        }
 
         if (!enterFalse.contains(inText))
             isEnterPress = false;
@@ -146,6 +159,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView_Result.setText(result.getTvResult());
         textView_History.setText(result.getTvHistory());
         arguments = result.getArguments();
+    }
 
+
+    // Сохранение данных
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle instanceState) {
+        calcTextData = new CalcTextData(textView_History.getText().toString(), textView_Input.getText().toString(), textView_Result.getText().toString(), arguments);
+        super.onSaveInstanceState(instanceState);
+        instanceState.putParcelable(dateForSave, calcTextData);
+    }
+
+    // Восстановление данных
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        calcTextData = instanceState.getParcelable(dateForSave);
+        setDataFromSave();
+    }
+
+    private void setTextToTV(TextView tv, String data){
+        tv.setText(data);
+    }
+
+
+    private void setDataFromSave() {
+        setTextToTV(textView_Input, calcTextData.getTvInput());
+        setTextToTV(textView_Result, calcTextData.getTvResult());
+        setTextToTV(textView_History, calcTextData.getTvHistory());
+        arguments = calcTextData.getArguments();
     }
 }
