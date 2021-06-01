@@ -8,29 +8,25 @@ import java.util.StringTokenizer;
 
 public class Calculate {
 
-    public static final int MAXDIGITS = 16;
-
-    public static final String operators = "+-*/^%√";
-    public static final String delimiters = "() " + operators;
-
+    private static final int MAXDIGITS = 16;
+    private static final String operators = "+-*/^%√";
+    private static final String delimiters = "() " + operators;
     private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-    public static final char delFloat = symbols.getDecimalSeparator();
-    public static final char delRank = symbols.getGroupingSeparator();
+    private static final char delFloat = symbols.getDecimalSeparator();
+    private static final char delRank = symbols.getGroupingSeparator();
+    private static double cDouble;
 
-
-
-    public static double cDouble;
-
-
+    // Форматируем строку и устанавливаем заданное кол-во символов после запятой
     public static String frmt(int cntAfterDot){
         return "%." + cntAfterDot + "f";
     }
 
-
+    // Устанавливаем кол-во символов после запятой (не больше 16 всего)
     public static String setCntAfterDot(double numb){
         String numbStr = String.valueOf(numb);
         int ePosition = numbStr.indexOf('E');
 
+        // Проверяем на экспонциональный вид и если можно - то убираем его
         if (ePosition != -1){
             String cnt = "0";
             if (ePosition - 1 > 0) {
@@ -52,6 +48,8 @@ public class Calculate {
             numbStr = numbStr.replace(Character.toString(delFloat), ".");
             numbStr = numbStr.replaceAll("\\.(.*?)0+$", ".$1").replaceAll("\\.$", "");
         }
+
+        // Убираем незначущие нули после запятой
         if (numbStr.length() > 2) {
             char last = numbStr.charAt(numbStr.length() - 1);
             char prev = numbStr.charAt(numbStr.length() - 2);
@@ -62,6 +60,7 @@ public class Calculate {
         return numbStr;
     }
 
+    // Получаем кол-во символов после запятой
     public static int getCntAfterDot(String numbStr){
         int ePosition = numbStr.indexOf('E');
         if (ePosition != -1){
@@ -83,10 +82,12 @@ public class Calculate {
         }
     }
 
-
+    // Установка формата (добавляем непереносимый пробел между разрядами, экспонциоальный вид и пр.) для каждого числа в строке ввода
     public static String setFormat(String arguments) {
         ArrayList<String> arg = new ArrayList<>();
         String curr;
+
+        // Парсим через StringTokenizer все числа (выкидываем все разделители)
         StringTokenizer tokenizer = new StringTokenizer(arguments, delimiters, true);
         while (tokenizer.hasMoreTokens()) {
             curr = tokenizer.nextToken();
@@ -108,6 +109,7 @@ public class Calculate {
         return arguments;
     }
 
+    // Обрабатываем нажатия кнопок
     public static CalcTextData procInput(CalcTextData input, String btn) {
         CalcTextData result = new CalcTextData();
 
@@ -115,31 +117,30 @@ public class Calculate {
 
         result.setTvHistory(input.getTvHistory());
 
-
         String digits = "0123456789兀";
         String operations = "()^√";
         String operations2 = "%/*-+";
 
+        // Обработка цифр и числа Pi
         if (digits.contains(btn)) {
             if (btn.equals("兀"))
                 arguments = arguments + Math.PI;
             else
                 arguments = arguments + btn;
             arguments = setFormat(arguments);
-
         }
 
+        // Обработка набора операций №1
         if (operations.contains(btn)) {
             arguments = arguments + btn;
-
         }
 
+        // Обработка кнопки Точка
         if (btn.equals(".")) {
             arguments = arguments + delFloat;
-
         }
 
-
+        // Обработка кнопки BackSpace
         if (btn.equals("⇐")) {
             if (arguments.length() > 0) {
                 if (arguments.length() == 1)
@@ -149,21 +150,25 @@ public class Calculate {
             }
         }
 
+        // Обработка набора операций №2 (в отличии от набора №1 - идёт проверка на наличие символов впереди)
         if (operations2.contains(btn)) {
             if (arguments.length() > 0){
                 if (!RPN.isOperator(arguments.substring(arguments.length() - 1))){
                     arguments = arguments + btn;
                 }
             }
-
         }
 
+        // Записываем текущий результат ввода
         result.setTvInput(arguments);
 
+        // Обработка кнопки =
         if (btn.equals("=")) {
+
+            // Записываем текущий результат ввода и добавляем знак "="
             result.setTvInput(arguments + "=");
 
-
+            // Заберём текущую строку для парсинга в класс Обратной польской нотации и проверим на наличие ошибок
             List<String> expression = RPN.parse(arguments.replace(Character.toString(delRank), "").replace(Character.toString(delFloat), "."));
             if (!RPN.getErrorMsg().equals(""))
                 result.setTvResult(RPN.getErrorMsg());
@@ -171,6 +176,7 @@ public class Calculate {
                 cDouble = RPN.calc(expression);
 
             result.setTvResult(String.valueOf(cDouble));
+            // Проверим на Infinity в результате и заменим на знак бесконечности, иначе отформатирруем результат
             if (result.getTvResult().equals("Infinity"))
                 result.setTvResult("∞");
             else{
@@ -178,6 +184,7 @@ public class Calculate {
                 result.setTvResult(setFormat(result.getTvResult()));
             }
 
+            // Заполним Исторрию
             if (result.getTvHistory().equals(""))
                 result.setTvHistory(arguments + "=" + result.getTvResult());
             else

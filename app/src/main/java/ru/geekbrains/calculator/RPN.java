@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.List;
 import java.util.StringTokenizer;
 
+// Класс Обратной польской нотации - позваляет распарсить все символы и производит вычисления
 public class RPN {
     private static final String operators = "+-*/^%√";
     private static final String delimiters = "() " + operators;
@@ -19,6 +20,7 @@ public class RPN {
         return errorMsg;
     }
 
+    // Проверяем на Разделители
     public static boolean isDelimiter(String token) {
         if (token.length() != 1)
             return false;
@@ -29,6 +31,7 @@ public class RPN {
         return false;
     }
 
+    // Проверяем на Операторов
     public static boolean isOperator(String token) {
         if (token.equals("u-"))
             return true;
@@ -41,10 +44,12 @@ public class RPN {
         return false;
     }
 
+    // Проверяем на функцию
     private static boolean isFunction(String token) {
         return token.equals("√");
     }
 
+    // Расставялем приоритеты
     private static int priority(String token) {
         if (token.equals("("))
             return 1;
@@ -57,6 +62,7 @@ public class RPN {
         return 5;
     }
 
+    // Парсим строку
     public static List<String> parse(String infix) {
         List<String> postfix = new ArrayList<>();
         Deque<String> stack = new ArrayDeque<>();
@@ -124,6 +130,7 @@ public class RPN {
         return postfix;
     }
 
+    // Сами вычисления
     public static Double calc(List<String> postfix) {
         Deque<Double> stack = new ArrayDeque<>();
         Double a;
