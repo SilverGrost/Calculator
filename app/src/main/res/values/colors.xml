@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gr1">#87fca6</color>
+    <color name="colorPrimary">#e91e63</color>
+    <color name="colorPrimaryDark">#b0003a</color>
+    <color name="colorAccent">#ff6090</color>
+    <color name="colorTextButton">#904A18</color>
+    <color name="colorTextButtonDark">#FEF0DA</color>
+    <color name="colorBGButton">#FEF0DA</color>
+    <color name="colorBGButtonDark">#904A18</color>
+    <color name="blue">#00bfff </color>
 </resources>

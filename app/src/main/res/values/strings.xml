@@ -24,4 +24,8 @@
     <string name="btn_add">+</string>
     <string name="btn_enter">=</string>
     <string name="btn_perc">%</string>
+    <string name="SwitchText">Тема (Светлая/Тёмная)</string>
+    <string name="rbMySrtyle">Мой стиль</string>
+    <string name="light_style">Light Style</string>
+    <string name="dark_style">Dark Style</string>
 </resources>

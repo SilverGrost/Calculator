@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemeLight" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryDark">@color/gr1</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/colorBGButtonDark</item>
+        <item name="colorPrimaryDark">@color/colorBGButtonDark</item>
+        <item name="colorAccent">@color/colorBGButtonDark</item>
+        <item name="editTextColor">@color/white</item>
+    </style>
+
+    <style name="AppThemeMy">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="radioButton" parent="AppThemeMy">
+        <item name="colorControlNormal">@color/colorBGButtonDark</item>
+        <item name="colorAccent">@color/colorBGButtonDark</item>
+    </style>
+
+</resources>

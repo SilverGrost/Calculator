@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/consL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/handcalc"
@@ -9,13 +10,15 @@
 
     <!--TextView_History-->
     <ScrollView
-        android:layout_width="match_parent"
+        android:id="@+id/ScrollView"
+        android:layout_width="0dp"
         android:layout_height="@dimen/scrollView_Height"
         android:fillViewport="true"
         android:scrollbars="vertical"
 
         app:layout_constraintBottom_toTopOf="@+id/textView_Operation"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RadioGroup"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,31 +29,80 @@
 
             <TextView
                 android:id="@+id/textView_History"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 tools:text="6114646449+3242=6416556" />
         </LinearLayout>
     </ScrollView>
 
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        style="@style/AppThemeMy"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+
+        android:orientation="vertical"
+
+        app:layout_constraintBottom_toTopOf="@+id/button_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/ScrollView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside">
+
+        <RadioButton
+            app:useMaterialThemeColors="true"
+            android:theme="@style/radioButton"
+            android:textColor="@drawable/selector"
+            android:id="@+id/radioButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/rbMySrtyle" />
+
+        <RadioButton
+            app:useMaterialThemeColors="true"
+            android:theme="@style/radioButton"
+            android:textColor="@drawable/selector"
+            android:id="@+id/radioButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/light_style" />
+
+        <RadioButton
+            app:useMaterialThemeColors="true"
+            android:theme="@style/radioButton"
+            android:textColor="@drawable/selector"
+            android:id="@+id/radioButton8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/dark_style" />
+    </RadioGroup>
+
     <!--TextView_Operation-->
     <TextView
         android:id="@+id/textView_Operation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/land_TextViewResult_FontSize"
         app:layout_constraintBottom_toTopOf="@+id/textView_Result"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RadioGroup"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="6114646449" />
 
     <!--TextView_Result-->
     <TextView
         android:id="@+id/textView_Result"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="@dimen/land_TextViewResult_FontSize"
         app:layout_constraintBottom_toTopOf="@+id/button_7"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/RadioGroup"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="6114646449" />
 
