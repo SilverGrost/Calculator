@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btnMarginStart">2dp</dimen>
+    <dimen name="btnMarginEnd">2dp</dimen>
+    <dimen name="btn_width">0dp</dimen>
+    <dimen name="textViewResult_FontSize">30sp</dimen>
+    <dimen name="land_TextViewResult_FontSize">20sp</dimen>
+    <dimen name="scrollView_Height">0dp</dimen>
+</resources>
