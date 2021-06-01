@@ -56,7 +56,7 @@
 
     <!--1 ряд-->
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_7" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_9"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/button_8" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_div"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_9" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_cl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -116,7 +116,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_div" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_pi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
 
     <!--2 ряд-->
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_4" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/button_5" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_multi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_6" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_bracketOpen"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_multi" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_exponent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
 
     <!--3 ряд-->
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_1" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -240,7 +240,7 @@
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toEndOf="@id/button_2" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_sub"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -252,7 +252,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_3" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_bracketClose"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -264,7 +264,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_sub" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_sqrt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -278,7 +278,7 @@
 
     <!--4 ряд-->
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_bs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_0"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -302,7 +302,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_bs" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_dot"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -314,7 +314,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_0" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -326,7 +326,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_dot" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_enter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -338,7 +338,7 @@
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@id/button_add" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_perc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
