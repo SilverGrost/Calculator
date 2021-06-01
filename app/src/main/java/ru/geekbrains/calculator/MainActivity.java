@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private boolean isEnterPress = false;
     private TextView textView_Input;
@@ -19,19 +19,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean canDot = true;
     private final String dateForSave = "dateForSave";
     private CalcTextData calcTextData;
+    private final int[] numberButtonIds = new int[]{R.id.button_0, R.id.button_1, R.id.button_2, R.id.button_3,
+            R.id.button_4, R.id.button_5, R.id.button_6, R.id.button_7, R.id.button_8, R.id.button_9};
+
+    private void setNumberButtonListeners() {
+        for (int numberButtonId : numberButtonIds) {
+            findViewById(numberButtonId).setOnClickListener(this);
+        }
+    }
 
     //Инициализируем все вьюхи
     private void initView() {
-        Button button_0 = findViewById(R.id.button_0);
-        Button button_1 = findViewById(R.id.button_1);
-        Button button_2 = findViewById(R.id.button_2);
-        Button button_3 = findViewById(R.id.button_3);
-        Button button_4 = findViewById(R.id.button_4);
-        Button button_5 = findViewById(R.id.button_5);
-        Button button_6 = findViewById(R.id.button_6);
-        Button button_7 = findViewById(R.id.button_7);
-        Button button_8 = findViewById(R.id.button_8);
-        Button button_9 = findViewById(R.id.button_9);
+        setNumberButtonListeners();
 
         Button button_dot = findViewById(R.id.button_dot);
         Button button_perc = findViewById(R.id.button_perc);
@@ -52,17 +51,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView_Result = findViewById(R.id.textView_Result);
         textView_History = findViewById(R.id.textView_History);
 
-        button_0.setOnClickListener(this);
-        button_1.setOnClickListener(this);
-        button_2.setOnClickListener(this);
-        button_3.setOnClickListener(this);
-        button_4.setOnClickListener(this);
-        button_5.setOnClickListener(this);
-        button_6.setOnClickListener(this);
-        button_7.setOnClickListener(this);
-        button_8.setOnClickListener(this);
-        button_9.setOnClickListener(this);
-
         button_dot.setOnClickListener(this);
         button_perc.setOnClickListener(this);
         button_div.setOnClickListener(this);
@@ -79,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_pi.setOnClickListener(this);
     }
 
-    public void clear(){
+    public void clear() {
         textView_Input.setText("");
         textView_Result.setText("");
         arguments = "";
@@ -104,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String inText = (String) ((Button) findViewById(v.getId())).getText();
 
         // Обработка цифровых кнопок
-        if (digits.contains(inText)){
-            if (isEnterPress){
+        if (digits.contains(inText)) {
+            if (isEnterPress) {
                 clear();
                 isEnterPress = false;
             }
@@ -116,8 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             isEnterPress = false;
 
         // Обработка операционных кнопок
-        if (!operations.contains(inText)){
-            if (isEnterPress){
+        if (!operations.contains(inText)) {
+            if (isEnterPress) {
                 clear();
                 isEnterPress = false;
             }
@@ -143,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             isEnterPress = true;
 
         // Запишем данные всех трёх TextView в Parcelable класс
-        CalcTextData input = new CalcTextData((String)textView_History.getText(), (String)textView_Input.getText(), (String)textView_Result.getText(), arguments);
+        CalcTextData input = new CalcTextData((String) textView_History.getText(), (String) textView_Input.getText(), (String) textView_Result.getText(), arguments);
 
         // Создадим пустой экземпляр для результата вычислений
         CalcTextData result;
@@ -175,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setDataFromSave();
     }
 
-    private void setTextToTV(TextView tv, String data){
+    private void setTextToTV(TextView tv, String data) {
         tv.setText(data);
     }
 

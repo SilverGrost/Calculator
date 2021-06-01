@@ -17,17 +17,17 @@ public class Calculate {
     private static double cDouble;
 
     // Форматируем строку и устанавливаем заданное кол-во символов после запятой
-    public static String frmt(int cntAfterDot){
+    public static String frmt(int cntAfterDot) {
         return "%." + cntAfterDot + "f";
     }
 
     // Устанавливаем кол-во символов после запятой (не больше 16 всего)
-    public static String setCntAfterDot(double numb){
+    public static String setCntAfterDot(double numb) {
         String numbStr = String.valueOf(numb);
         int ePosition = numbStr.indexOf('E');
 
         // Проверяем на экспонциональный вид и если можно - то убираем его
-        if (ePosition != -1){
+        if (ePosition != -1) {
             String cnt = "0";
             if (ePosition - 1 > 0) {
                 cnt = numbStr.substring(ePosition + 1);
@@ -61,12 +61,11 @@ public class Calculate {
     }
 
     // Получаем кол-во символов после запятой
-    public static int getCntAfterDot(String numbStr){
+    public static int getCntAfterDot(String numbStr) {
         int ePosition = numbStr.indexOf('E');
-        if (ePosition != -1){
+        if (ePosition != -1) {
             return -2;
-        }
-        else {
+        } else {
             if (numbStr.length() > 2) {
                 char last = numbStr.charAt(numbStr.length() - 1);
                 char prev = numbStr.charAt(numbStr.length() - 2);
@@ -152,8 +151,8 @@ public class Calculate {
 
         // Обработка набора операций №2 (в отличии от набора №1 - идёт проверка на наличие символов впереди)
         if (operations2.contains(btn)) {
-            if (arguments.length() > 0){
-                if (!RPN.isOperator(arguments.substring(arguments.length() - 1))){
+            if (arguments.length() > 0) {
+                if (!RPN.isOperator(arguments.substring(arguments.length() - 1))) {
                     arguments = arguments + btn;
                 }
             }
@@ -179,7 +178,7 @@ public class Calculate {
             // Проверим на Infinity в результате и заменим на знак бесконечности, иначе отформатирруем результат
             if (result.getTvResult().equals("Infinity"))
                 result.setTvResult("∞");
-            else{
+            else {
                 result.setTvResult(setCntAfterDot(cDouble));
                 result.setTvResult(setFormat(result.getTvResult()));
             }

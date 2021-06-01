@@ -82,12 +82,10 @@ public class RPN {
 
             if (isFunction(curr))
                 stack.push(curr);
-            else
-            if (isDelimiter(curr)) {
+            else if (isDelimiter(curr)) {
                 if (curr.equals("("))
                     stack.push(curr);
-                else
-                if (curr.equals(")")) {
+                else if (curr.equals(")")) {
                     while (!stack.peek().equals("(")) {
                         postfix.add(stack.pop());
                         if (stack.isEmpty()) {
@@ -99,21 +97,18 @@ public class RPN {
                     if (!stack.isEmpty() && isFunction(stack.peek())) {
                         postfix.add(stack.pop());
                     }
-                }
-                else {
-                    if (curr.equals("-") && (prev.equals("") || (isDelimiter(prev)  && !prev.equals(")")))) {
+                } else {
+                    if (curr.equals("-") && (prev.equals("") || (isDelimiter(prev) && !prev.equals(")")))) {
                         // унарный минус
                         curr = "u-";
-                    }
-                    else {
+                    } else {
                         while (!stack.isEmpty() && (priority(curr) <= priority(stack.peek()))) {
                             postfix.add(stack.pop());
                         }
                     }
                     stack.push(curr);
                 }
-            }
-            else {
+            } else {
                 postfix.add(curr);
             }
             prev = curr;
