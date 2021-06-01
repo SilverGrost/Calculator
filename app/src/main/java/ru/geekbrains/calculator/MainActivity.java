@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.button.MaterialButton;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -89,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String digits = "0123456789";
 
         // Получим текст из кнопки
-        String inText = (String) ((Button) findViewById(v.getId())).getText();
+        String inText = (String) ((MaterialButton) findViewById(v.getId())).getText();
 
         // Обработка цифровых кнопок
         if (digits.contains(inText)) {
