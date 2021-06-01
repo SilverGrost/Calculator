@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         // Обработка Точки, что бы не было несколько
-        if (inText.equals("*")) {
+        if (inText.equals(".")) {
             if (canDot) {
                 canDot = false;
             }
