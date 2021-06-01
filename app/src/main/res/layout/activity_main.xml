@@ -79,6 +79,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
+                app:useMaterialThemeColors="false"
+                android:textColor="@color/blue"
                 tools:text="6114646449+3242=6416556" />
         </LinearLayout>
     </ScrollView>
@@ -92,6 +94,8 @@
         app:layout_constraintBottom_toTopOf="@+id/textView_Result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:useMaterialThemeColors="false"
+        android:textColor="@color/blue"
         tools:text="6114646449" />
 
     <!--TextView_Result-->
@@ -103,6 +107,8 @@
         app:layout_constraintBottom_toTopOf="@+id/button_perc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:useMaterialThemeColors="false"
+        android:textColor="@color/blue"
         tools:text="6114646449" />
 
     <com.google.android.material.button.MaterialButton
