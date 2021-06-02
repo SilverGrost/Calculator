@@ -28,4 +28,6 @@
     <string name="rbMySrtyle">Мой стиль</string>
     <string name="light_style">Light Style</string>
     <string name="dark_style">Dark Style</string>
+    <string name="btn_settings">Настройки</string>
+    <string name="ok">OK</string>
 </resources>
