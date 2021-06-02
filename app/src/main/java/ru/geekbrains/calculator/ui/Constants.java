@@ -8,5 +8,6 @@ public interface Constants {
     String dateForSave = "dateForSave";
     String NameSharedPreference = "THEME";
     String AppTheme = "APP_THEME";
+    String TEXT = "PARAM";
     int REQUEST_CODE_SETTING_ACTIVITY = 99;
 }

@@ -24,6 +24,7 @@ import static ru.geekbrains.calculator.ui.Constants.AppThemeLight;
 import static ru.geekbrains.calculator.ui.Constants.AppThemeMy;
 import static ru.geekbrains.calculator.ui.Constants.NameSharedPreference;
 import static ru.geekbrains.calculator.ui.Constants.REQUEST_CODE_SETTING_ACTIVITY;
+import static ru.geekbrains.calculator.ui.Constants.TEXT;
 import static ru.geekbrains.calculator.ui.Constants.dateForSave;
 import static ru.geekbrains.calculator.ui.Constants.intentParam;
 
@@ -172,6 +173,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         super.onCreate(savedInstanceState);
         setBGtoLayout(codeStyle);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle == null){
+            return;
+        }
+        String text = bundle.getString(TEXT); // получить данные из Intent
+        arguments = text; // Сохранить их в TextView
+        textView_Input.setText(arguments);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
