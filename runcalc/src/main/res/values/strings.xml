@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RunCalc</string>
+    <string name="btnRun">Запустить калькулятор</string>
+    <string name="editTextHint">Выражение для калькулятора</string>
+</resources>
