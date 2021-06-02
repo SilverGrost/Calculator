@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
-import ru.geekbrains.calculator.SettingsActivity;
 import ru.geekbrains.calculator.calc.CalcTextData;
 import ru.geekbrains.calculator.calc.Calculate;
 import ru.geekbrains.calculator.R;
@@ -179,8 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (bundle == null){
             return;
         }
-        String text = bundle.getString(TEXT); // получить данные из Intent
-        arguments = text; // Сохранить их в TextView
+        arguments = bundle.getString(TEXT); // Сохранить их в TextView
         textView_Input.setText(arguments);
     }
 

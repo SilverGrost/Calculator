@@ -1,4 +1,4 @@
-package ru.geekbrains.calculator;
+package ru.geekbrains.calculator.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 
-import ru.geekbrains.calculator.ui.Constants;
-import ru.geekbrains.calculator.ui.MainActivity;
+import ru.geekbrains.calculator.R;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, Constants {
 
