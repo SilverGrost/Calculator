@@ -1,4 +1,4 @@
-package ru.geekbrains.calculator;
+package ru.geekbrains.calculator.calc;
 
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package ru.geekbrains.calculator;
+package ru.geekbrains.calculator.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+
+import ru.geekbrains.calculator.calc.CalcTextData;
+import ru.geekbrains.calculator.calc.Calculate;
+import ru.geekbrains.calculator.R;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
