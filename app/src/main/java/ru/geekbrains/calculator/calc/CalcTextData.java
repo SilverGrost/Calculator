@@ -1,4 +1,4 @@
-package ru.geekbrains.calculator;
+package ru.geekbrains.calculator.calc;
 
 import android.os.Parcel;
 import android.os.Parcelable;

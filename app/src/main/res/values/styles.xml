@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemeLight" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryDark">@color/gr1</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/colorBGButtonDark</item>
+        <item name="colorPrimaryDark">@color/colorBGButtonDark</item>
+        <item name="colorAccent">@color/colorBGButtonDark</item>
+        <item name="editTextColor">@color/white</item>
+    </style>
+
+    <style name="AppThemeMy">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="radioButtons">
+        <item name="colorControlNormal">@color/colorBGButtonDark</item>
+        <item name="colorAccent">@color/colorBGButtonDark</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="materialButton">
+        <item name="android:layout_width">@dimen/btn_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/btnMarginStart</item>
+        <item name="android:layout_marginEnd">@dimen/btnMarginEnd</item>
+    </style>
+
+    <style name="textViews">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textViewResult_FontSize</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="textViewsLand">
+        <item name="android:layout_width">@dimen/land_TextViews_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/land_TextViews_FontSize</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+</resources>
