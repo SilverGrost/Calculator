@@ -9,11 +9,11 @@ import java.util.StringTokenizer;
 public class Calculate {
 
     private static final int MAXDIGITS = 16;
-    private static final String operators = "+-*/^%√";
-    private static final String delimiters = "() " + operators;
-    private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-    private static final char delFloat = symbols.getDecimalSeparator();
-    private static final char delRank = symbols.getGroupingSeparator();
+    private static final String OPERATORS = "+-*/^%√";
+    private static final String DELIMITERS = "() " + OPERATORS;
+    private static final DecimalFormatSymbols SYMBOLS = new DecimalFormatSymbols();
+    private static final char delFloat = SYMBOLS.getDecimalSeparator();
+    private static final char delRank = SYMBOLS.getGroupingSeparator();
     private static double cDouble;
 
     // Форматируем строку и устанавливаем заданное кол-во символов после запятой
@@ -87,7 +87,7 @@ public class Calculate {
         String curr;
 
         // Парсим через StringTokenizer все числа (выкидываем все разделители)
-        StringTokenizer tokenizer = new StringTokenizer(arguments, delimiters, true);
+        StringTokenizer tokenizer = new StringTokenizer(arguments, DELIMITERS, true);
         while (tokenizer.hasMoreTokens()) {
             curr = tokenizer.nextToken();
             curr = curr.replace(Character.toString(delRank), "");

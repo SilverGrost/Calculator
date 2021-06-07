@@ -9,8 +9,8 @@ import java.util.StringTokenizer;
 
 // Класс Обратной польской нотации - позваляет распарсить все символы и производит вычисления
 public class RPN {
-    private static final String operators = "+-*/^%√";
-    private static final String delimiters = "() " + operators;
+    private static final String OPERATORS = "+-*/^%√";
+    private static final String DELIMITERS = "() " + OPERATORS;
     private static String errorMsg = "";
 
     public RPN() {
@@ -25,8 +25,8 @@ public class RPN {
     public static boolean isDelimiter(String token) {
         if (token.length() != 1)
             return false;
-        for (int i = 0; i < delimiters.length(); i++) {
-            if (token.charAt(0) == delimiters.charAt(i))
+        for (int i = 0; i < DELIMITERS.length(); i++) {
+            if (token.charAt(0) == DELIMITERS.charAt(i))
                 return true;
         }
         return false;
@@ -39,8 +39,8 @@ public class RPN {
                 return true;
             if (token.equals("%"))
                 return true;
-            for (int i = 0; i < operators.length(); i++) {
-                if (token.charAt(0) == operators.charAt(i))
+            for (int i = 0; i < OPERATORS.length(); i++) {
+                if (token.charAt(0) == OPERATORS.charAt(i))
                     return true;
             }
         }
@@ -74,7 +74,7 @@ public class RPN {
     public static List<String> parse(String infix) {
         List<String> postfix = new ArrayList<>();
         Deque<String> stack = new ArrayDeque<>();
-        StringTokenizer tokenizer = new StringTokenizer(infix, delimiters, true);
+        StringTokenizer tokenizer = new StringTokenizer(infix, DELIMITERS, true);
 
         String prev = "";
         String curr;

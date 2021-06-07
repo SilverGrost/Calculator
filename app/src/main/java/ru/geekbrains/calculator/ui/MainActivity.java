@@ -11,22 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.material.button.MaterialButton;
-
 import ru.geekbrains.calculator.calc.CalcTextData;
 import ru.geekbrains.calculator.calc.Calculate;
 import ru.geekbrains.calculator.R;
 
-import static ru.geekbrains.calculator.ui.Constants.APP_THEME;
-import static ru.geekbrains.calculator.ui.Constants.APP_THEME_DARK;
-import static ru.geekbrains.calculator.ui.Constants.APP_THEME_LIGHT;
-import static ru.geekbrains.calculator.ui.Constants.APP_THEME_MY;
-import static ru.geekbrains.calculator.ui.Constants.LEN_PREFIX_BTN_NAME;
-import static ru.geekbrains.calculator.ui.Constants.NAME_SHARED_PREFERENCE;
-import static ru.geekbrains.calculator.ui.Constants.REQUEST_CODE_SETTING_ACTIVITY;
-import static ru.geekbrains.calculator.ui.Constants.TEXT;
-import static ru.geekbrains.calculator.ui.Constants.DATE_FOR_SAVE;
-import static ru.geekbrains.calculator.ui.Constants.INTENT_PARAM;
+import static ru.geekbrains.calculator.ui.Constants.*;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -102,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // Чтение настроек, параметр «тема»
-    protected int loadTheme(int codeStyle) {
+    public int loadTheme(int codeStyle) {
         // Работаем через специальный класс сохранения и чтения настроек
         SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
@@ -112,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // Сохранение настроек
-    protected void saveTheme(int codeStyle) {
+    public void saveTheme(int codeStyle) {
         SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         // Настройки сохраняются посредством специального класса editor.
         SharedPreferences.Editor editor = sharedPref.edit();
