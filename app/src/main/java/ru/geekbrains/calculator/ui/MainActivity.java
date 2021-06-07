@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
@@ -17,28 +17,30 @@ import ru.geekbrains.calculator.calc.CalcTextData;
 import ru.geekbrains.calculator.calc.Calculate;
 import ru.geekbrains.calculator.R;
 
+import static ru.geekbrains.calculator.ui.Constants.AppTheme;
+import static ru.geekbrains.calculator.ui.Constants.AppThemeDark;
+import static ru.geekbrains.calculator.ui.Constants.AppThemeLight;
+import static ru.geekbrains.calculator.ui.Constants.AppThemeMy;
+import static ru.geekbrains.calculator.ui.Constants.NameSharedPreference;
+import static ru.geekbrains.calculator.ui.Constants.REQUEST_CODE_SETTING_ACTIVITY;
+import static ru.geekbrains.calculator.ui.Constants.TEXT;
+import static ru.geekbrains.calculator.ui.Constants.dateForSave;
+import static ru.geekbrains.calculator.ui.Constants.intentParam;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private int codeStyle;
     private boolean isEnterPress = false;
     private TextView textView_Input;
     private TextView textView_Result;
     private TextView textView_History;
     private String arguments = "";
     private boolean canDot = true;
-    private final String dateForSave = "dateForSave";
     private CalcTextData calcTextData;
     private final int[] numberButtonIds = new int[]{R.id.button_0, R.id.button_1, R.id.button_2, R.id.button_3,
             R.id.button_4, R.id.button_5, R.id.button_6, R.id.button_7, R.id.button_8, R.id.button_9};
     private ConstraintLayout constraintLayout;
-
-    // Имя настроек
-    private static final String NameSharedPreference = "THEME";
-    // Имя параметра в настройках
-    private static final String AppTheme = "APP_THEME";
-    private static final int AppThemeMy = 0;
-    private static final int AppThemeLight = 1;
-    private static final int AppThemeDark = 2;
     private static int AppThemeDefault = AppThemeMy;
 
     private void setNumberButtonListeners() {
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //Инициализируем все вьюхи
-    private void initView(int rb) {
+    private void initView() {
         setNumberButtonListeners();
 
         Button button_dot = findViewById(R.id.button_dot);
@@ -65,16 +67,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button_exponent = findViewById(R.id.button_exponent);
         Button button_sqrt = findViewById(R.id.button_sqrt);
         Button button_pi = findViewById(R.id.button_pi);
+        Button button_settings = findViewById(R.id.button_settings);
 
         constraintLayout = findViewById(R.id.consL);
 
         textView_Input = findViewById(R.id.textView_Operation);
         textView_Result = findViewById(R.id.textView_Result);
         textView_History = findViewById(R.id.textView_History);
-
-        RadioButton radioButtonMyStyle = findViewById(R.id.radioButton6);
-        RadioButton radioButtonLightStyle = findViewById(R.id.radioButton7);
-        RadioButton radioButtonDarkStyle = findViewById(R.id.radioButton8);
 
         button_dot.setOnClickListener(this);
         button_perc.setOnClickListener(this);
@@ -91,21 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button_sqrt.setOnClickListener(this);
         button_pi.setOnClickListener(this);
 
-        radioButtonMyStyle.setOnClickListener(this);
-        radioButtonLightStyle.setOnClickListener(this);
-        radioButtonDarkStyle.setOnClickListener(this);
-
-
-        switch (rb) {
-            case 0:
-                radioButtonMyStyle.setChecked(true);
-                break;
-            case 1:
-                radioButtonLightStyle.setChecked(true);
-                break;
-            default:
-                radioButtonDarkStyle.setChecked(true);
-        }
+        button_settings.setOnClickListener(this);
     }
 
     public void clear() {
@@ -144,6 +129,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return AppThemeMy;
     }
 
+    public static int rbToStyleID(int rb_loc) {
+        switch (rb_loc) {
+            case 1:
+                return R.style.AppThemeLight;
+            case 2:
+                return R.style.AppThemeDark;
+            default:
+                return R.style.AppThemeMy;
+        }
+    }
+
     // Применяем BackGround
     private void setBGtoLayout(int codeStyle) {
         switch (codeStyle) {
@@ -170,12 +166,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppThemeDefault = loadTheme(AppThemeDefault);
-        int rb = codeStyleThemeToStyleId(AppThemeDefault);
+        codeStyle = codeStyleThemeToStyleId(AppThemeDefault);
         setTheme(AppThemeDefault);
         setContentView(R.layout.activity_main);
-        initView(rb);
+        initView();
         super.onCreate(savedInstanceState);
-        setBGtoLayout(rb);
+        setBGtoLayout(codeStyle);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle == null){
+            return;
+        }
+        arguments = bundle.getString(TEXT); // Сохранить их в TextView
+        textView_Input.setText(arguments);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != REQUEST_CODE_SETTING_ACTIVITY) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+
+        if (resultCode == RESULT_OK) {
+            codeStyle = (int) data.getIntExtra(intentParam, AppThemeDefault);
+            AppThemeDefault = rbToStyleID(codeStyle);
+            applyTheme(AppThemeDefault);
+        }
     }
 
     @Override
@@ -186,13 +203,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String digits = "0123456789";
         String inText;
 
-        if (v.getId() == R.id.radioButton6)
-            applyTheme(R.style.AppThemeMy);
-        else if (v.getId() == R.id.radioButton7)
-            applyTheme(R.style.AppThemeLight);
-        else if (v.getId() == R.id.radioButton8)
-            applyTheme(R.style.AppThemeDark);
-        else {
+        if (v.getId() == R.id.button_settings) {
+            // Чтобы стартовать активити, надо подготовить интент
+            // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
+            Intent runSettings = new Intent(MainActivity.this, SettingsActivity.class);
+            // Передача данных через интент
+            runSettings.putExtra(intentParam, codeStyle);
+            // Метод стартует активити, указанную в интенте
+            //startActivity(runSettings);
+            startActivityForResult(runSettings, REQUEST_CODE_SETTING_ACTIVITY);
+        } else {
             // Получим текст из кнопки
             inText = (String) ((MaterialButton) findViewById(v.getId())).getText();
 

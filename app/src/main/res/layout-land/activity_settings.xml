@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SettingsActivity">
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        style="@style/radioGroup_Settings"
+
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            style="@style/radioButtons"
+            android:text="@string/rbMySrtyle" />
+
+        <RadioButton
+            android:id="@+id/radioButton7"
+            style="@style/radioButtons"
+            android:text="@string/light_style" />
+
+        <RadioButton
+            android:id="@+id/radioButton8"
+            style="@style/radioButtons"
+            android:text="@string/dark_style" />
+
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_finish"
+        style="@style/AppThemeMy"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:text="@string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
