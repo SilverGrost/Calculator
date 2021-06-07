@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 // Класс Обратной польской нотации - позваляет распарсить все символы и производит вычисления
@@ -33,32 +34,39 @@ public class RPN {
 
     // Проверяем на Операторов
     public static boolean isOperator(String token) {
-        if (token.equals("u-"))
-            return true;
-        if (token.equals("%"))
-            return true;
-        for (int i = 0; i < operators.length(); i++) {
-            if (token.charAt(0) == operators.charAt(i))
+        if (token != null) {
+            if (token.equals("u-"))
                 return true;
+            if (token.equals("%"))
+                return true;
+            for (int i = 0; i < operators.length(); i++) {
+                if (token.charAt(0) == operators.charAt(i))
+                    return true;
+            }
         }
         return false;
     }
 
     // Проверяем на функцию
     private static boolean isFunction(String token) {
-        return token.equals("√");
+        if (token != null)
+            return token.equals("√");
+        else
+            return false;
     }
 
     // Расставялем приоритеты
     private static int priority(String token) {
-        if (token.equals("("))
-            return 1;
-        if (token.equals("+") || token.equals("-"))
-            return 2;
-        if (token.equals("*") || token.equals("/") || token.equals("^") || token.equals("√"))
-            return 3;
-        if (token.equals("%"))
-            return 4;
+        if (token != null) {
+            if (token.equals("("))
+                return 1;
+            if (token.equals("+") || token.equals("-"))
+                return 2;
+            if (token.equals("*") || token.equals("/") || token.equals("^") || token.equals("√"))
+                return 3;
+            if (token.equals("%"))
+                return 4;
+        }
         return 5;
     }
 
@@ -69,7 +77,7 @@ public class RPN {
         StringTokenizer tokenizer = new StringTokenizer(infix, delimiters, true);
 
         String prev = "";
-        String curr = "";
+        String curr;
 
         while (tokenizer.hasMoreTokens()) {
             curr = tokenizer.nextToken();
@@ -86,7 +94,7 @@ public class RPN {
                 if (curr.equals("("))
                     stack.push(curr);
                 else if (curr.equals(")")) {
-                    while (!stack.peek().equals("(")) {
+                    while (!Objects.equals(stack.peek(), "(")) {
                         postfix.add(stack.pop());
                         if (stack.isEmpty()) {
                             errorMsg = "Скобки не согласованы";
