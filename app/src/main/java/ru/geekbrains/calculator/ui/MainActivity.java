@@ -17,15 +17,16 @@ import ru.geekbrains.calculator.calc.CalcTextData;
 import ru.geekbrains.calculator.calc.Calculate;
 import ru.geekbrains.calculator.R;
 
-import static ru.geekbrains.calculator.ui.Constants.AppTheme;
-import static ru.geekbrains.calculator.ui.Constants.AppThemeDark;
-import static ru.geekbrains.calculator.ui.Constants.AppThemeLight;
-import static ru.geekbrains.calculator.ui.Constants.AppThemeMy;
-import static ru.geekbrains.calculator.ui.Constants.NameSharedPreference;
+import static ru.geekbrains.calculator.ui.Constants.APP_THEME;
+import static ru.geekbrains.calculator.ui.Constants.APP_THEME_DARK;
+import static ru.geekbrains.calculator.ui.Constants.APP_THEME_LIGHT;
+import static ru.geekbrains.calculator.ui.Constants.APP_THEME_MY;
+import static ru.geekbrains.calculator.ui.Constants.LEN_PREFIX_BTN_NAME;
+import static ru.geekbrains.calculator.ui.Constants.NAME_SHARED_PREFERENCE;
 import static ru.geekbrains.calculator.ui.Constants.REQUEST_CODE_SETTING_ACTIVITY;
 import static ru.geekbrains.calculator.ui.Constants.TEXT;
-import static ru.geekbrains.calculator.ui.Constants.dateForSave;
-import static ru.geekbrains.calculator.ui.Constants.intentParam;
+import static ru.geekbrains.calculator.ui.Constants.DATE_FOR_SAVE;
+import static ru.geekbrains.calculator.ui.Constants.INTENT_PARAM;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int[] numberButtonIds = new int[]{R.id.button_0, R.id.button_1, R.id.button_2, R.id.button_3,
             R.id.button_4, R.id.button_5, R.id.button_6, R.id.button_7, R.id.button_8, R.id.button_9};
     private ConstraintLayout constraintLayout;
-    private static int AppThemeDefault = AppThemeMy;
+    private static int AppThemeDefault = APP_THEME_MY;
 
     private void setNumberButtonListeners() {
         for (int numberButtonId : numberButtonIds) {
@@ -103,30 +104,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Чтение настроек, параметр «тема»
     protected int loadTheme(int codeStyle) {
         // Работаем через специальный класс сохранения и чтения настроек
-        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
-        int result = sharedPref.getInt(AppTheme, codeStyle);
+        int result = sharedPref.getInt(APP_THEME, codeStyle);
         AppThemeDefault = result;
         return result;
     }
 
     // Сохранение настроек
     protected void saveTheme(int codeStyle) {
-        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences(NAME_SHARED_PREFERENCE, MODE_PRIVATE);
         // Настройки сохраняются посредством специального класса editor.
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(AppTheme, codeStyle);
+        editor.putInt(APP_THEME, codeStyle);
         editor.apply();
     }
 
     // Преобразуем id ресурса темы в код стиля
     private int codeStyleThemeToStyleId(int idStyle) {
         if (idStyle == R.style.AppThemeLight) {
-            return AppThemeLight;
+            return APP_THEME_LIGHT;
         } else if (idStyle == R.style.AppThemeDark) {
-            return AppThemeDark;
+            return APP_THEME_DARK;
         }
-        return AppThemeMy;
+        return APP_THEME_MY;
     }
 
     public static int rbToStyleID(int rb_loc) {
@@ -189,9 +190,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (resultCode == RESULT_OK) {
-            codeStyle = (int) data.getIntExtra(intentParam, AppThemeDefault);
+            codeStyle = (int) data.getIntExtra(INTENT_PARAM, AppThemeDefault);
             AppThemeDefault = rbToStyleID(codeStyle);
             applyTheme(AppThemeDefault);
+        }
+    }
+
+    public String idButtonToSymbol(String idButton){
+        switch (idButton.substring(LEN_PREFIX_BTN_NAME)){
+            case "perc":
+                return "%";
+            case "sqrt":
+                return "√";
+            case "exponent":
+                return "^";
+            case "pi":
+                return "兀";
+            case "div":
+                return "/";
+            case "multi":
+                return "*";
+            case "add":
+                return "+";
+            case "sub":
+                return "-";
+            case "enter":
+                return "=";
+            case "bracketOpen":
+                return "(";
+            case "bracketClose":
+                return ")";
+            case "cl":
+                return "C";
+            case "bs":
+                return "⇐";
+            case "dot":
+                return ".";
+            default:
+                return idButton.substring(LEN_PREFIX_BTN_NAME);
         }
     }
 
@@ -208,13 +244,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // В данном случае это будет явный интент, поскольку здесь передаётся класс активити
             Intent runSettings = new Intent(MainActivity.this, SettingsActivity.class);
             // Передача данных через интент
-            runSettings.putExtra(intentParam, codeStyle);
+            runSettings.putExtra(INTENT_PARAM, codeStyle);
             // Метод стартует активити, указанную в интенте
             //startActivity(runSettings);
             startActivityForResult(runSettings, REQUEST_CODE_SETTING_ACTIVITY);
         } else {
             // Получим текст из кнопки
-            inText = (String) ((MaterialButton) findViewById(v.getId())).getText();
+
+            inText = idButtonToSymbol(getResources().getResourceEntryName(v.getId()));
 
             // Обработка цифровых кнопок
             if (digits.contains(inText)) {
@@ -278,14 +315,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onSaveInstanceState(@NonNull Bundle instanceState) {
         calcTextData = new CalcTextData(textView_History.getText().toString(), textView_Input.getText().toString(), textView_Result.getText().toString(), arguments);
         super.onSaveInstanceState(instanceState);
-        instanceState.putParcelable(dateForSave, calcTextData);
+        instanceState.putParcelable(DATE_FOR_SAVE, calcTextData);
     }
 
     // Восстановление данных
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
         super.onRestoreInstanceState(instanceState);
-        calcTextData = instanceState.getParcelable(dateForSave);
+        calcTextData = instanceState.getParcelable(DATE_FOR_SAVE);
         setDataFromSave();
     }
 

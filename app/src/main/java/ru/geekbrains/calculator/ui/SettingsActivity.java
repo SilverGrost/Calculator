@@ -18,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // получить данные из Intent
-        radioBtn = getIntent().getExtras().getInt(intentParam);
+        radioBtn = getIntent().getExtras().getInt(INTENT_PARAM);
         setTheme(MainActivity.rbToStyleID(radioBtn));
         setContentView(R.layout.activity_settings);
         initView(radioBtn);
@@ -52,14 +52,14 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.radioButton6) {//applyTheme(R.style.AppThemeMy);
-            radioBtn = AppThemeMy;
+            radioBtn = APP_THEME_MY;
         } else if (id == R.id.radioButton7) {//applyTheme(R.style.AppThemeLight);
-            radioBtn = AppThemeLight;
+            radioBtn = APP_THEME_LIGHT;
         } else if (id == R.id.radioButton8) {//applyTheme(R.style.AppThemeDark);
-            radioBtn = AppThemeDark;
+            radioBtn = APP_THEME_DARK;
         } else if (id == R.id.button_finish) {
             Intent intentResult = new Intent();
-            intentResult.putExtra(intentParam, radioBtn);
+            intentResult.putExtra(INTENT_PARAM, radioBtn);
             setResult(RESULT_OK, intentResult);
 
             finish();
